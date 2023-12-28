@@ -21,3 +21,36 @@
 7.**Dimension tables (SCD)**: Slowly changing dimension (SCD) tables are used to store dimension data, such as customer or product information. These tables are updated with the latest changes from the change events.
 
 8.**Summary tables**: Summary tables are created to aggregate the data from the dimension and fact tables. These tables can be used for reporting and analysis.
+
+### The Use Case
+
+**Our Source ‘database' has stock trades for the Dow Jones Industrials, 30 US stocks. On average 200M-400M stock trades are executed per day. Our agent will be capturing Limit Order transaction events for these 30 stocks, which are new orders, updates to orders (changes in quantity or the limit price), and orders that are cancelled. For this simulation, there are 3 new orders for every 2 updates, and then one cancellation. This scenario's datastream will first reproduce a heavy workload of an initial market opening session and secondly a more modest continuous flow. Snowflake data consumers want to see three perspectives on limit orders: what is the "current" list of orders that filters out stale and cancelled orders, a historical table showing every event on the source (in a traditional slowly changing dimension format), and current orders summarized by stock ticker symbol and by long or short position. Latency needs to be minimized, 1-2 minutes would be ideal for the end-to-end process.**
+
+### Prerequisites
+
+**Familiarity with Snowflake, basic SQL knowledge, using your desktop command line and executing a java program**
+
+**Have a Java JRE/JDK Runtime environment on your laptop/desktop (confirm by running "java -version" showing v11 or higher). Suggest OpenJDK 20 or higher if installing.**
+
+### What we'll Build
+
+**1)User and Roles to control authentication and security**
+
+**2)A Snowflake database that contains all data and objects built in this lab**
+
+**3)A Landing/Staging table to initially land your incoming data stream**
+
+**4)Analytics-Ready Dynamic Tables**
+
+**5)Secure Functions for decrypting sensitive fields**
+
+**6)Secure Views to distribute data to various audiences**
+
+
+## 2. Setting up Snowflake
+### a) Download
+The first thing you will need to do is download the following two files. The first is a ZIP file you need to extract to a directory (for example C:/SnowflakeQuickstarts) that is the streaming simulator client. The second file contains a series of SQL commands to execute in a Worksheet throughout this lab
+
+https://sfquickstarts.s3.us-west-1.amazonaws.com/data_engineering_CDC_snowpipestreaming_dynamictables/CDCSimulatorApp.zip
+
+

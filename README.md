@@ -546,9 +546,85 @@ as
   from ENG.LIMIT_ORDERS_CURRENT_DT order by orderid_PII;
 ```
 
+Grant usage to PII User Role
 
+```
+grant usage on schema PII to role PII_ALLOWED;
+grant usage on function PII._DECRYPT_AES(string,string) to role PII_ALLOWED;
+grant usage on function PII.DECRYPT_CDC_FIELD(varchar) to role PII_ALLOWED;
+grant select on view PII.LIMIT_ORDERS_VW to role PII_ALLOWED;
+```
 
+### f) Be PII-Enabled
 
+```
+use role PII_ALLOWED;
+use database VHOL_ENG_CDC;
+select * from PII.LIMIT_ORDERS_VW order by ORDERID_PII limit 1000;
+select * from PII.LIMIT_ORDERS_VW where ticker='MMM' and position='LONG' order by ORDERID_PII;
+select * from PII.LIMIT_ORDERS_VW limit 1000;
+```
+
+You can now see the ORDERID in three forms: Tokenized, Encrypted, and Decrypted. But only if you have a role for PII.
+
+Snowflake's Granular, Role-Based Access enables you to control who has access to what, at the database/schema, table, column, and row level as you need! Dynamic Masking and tagging will be more layers of security available soon, but not included or enabled in this preview.
+
+### g) Check Security
+
+```
+use role VHOL;
+use schema VHOL_ENG_CDC.PII;
+select * from VHOL_ENG_CDC.PII.LIMIT_ORDERS_VW limit 1000;
+```
+
+## 8. Final Steps & Cleanup
+
+### a) Use Cntrl-C to kill your Streaming App running on your Desktop
+### b) See how many transactions you have processed
+
+```
+use role VHOL;
+select count(*) from ENG.CDC_STREAMING_TABLE;
+```
+### c) Remove & Cleanup Desktop Directory created for this Streaming Application
+### d) Drop Database, removing all objects created by this Hands-on Lab (Optional)
+
+```
+drop database VHOL_ENG_CDC;
+```
+
+### e) Drop Warehouse (Optional)
+
+```
+use role ACCOUNTADMIN;
+drop warehouse VHOL_CDC_WH;
+```
+
+### f) Drop Role (Optional)
+
+```
+use role ACCOUNTADMIN;
+drop role VHOL;
+drop role VHOL_CDC_AGENT;
+drop role PII_ADMIN;
+drop role PII_ALLOWED;
+```
+
+## 9. Conclusion
+
+### Congratulations, you have completed this Lab!
+
+**What We Covered**
+
+**1.Setup keypair authentication into Snowflake**
+
+**2.Used Snowpipe Streaming Java API and streamed data into Snowflake**
+
+**3.Ingested Semi-Structured JSON data into Snowflake in real-time instead of bulk loading**
+
+**4.Created Multiple Dynamic Tables for Data Engineering Tasks**
+
+**5.Secured Sensitive Fields, beginning from the Source, but also decrypted for those authorized**
 
 
 

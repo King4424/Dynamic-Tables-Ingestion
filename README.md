@@ -1,4 +1,4 @@
-# Snowpipe Streaming and Dynamic Tables for Real-Time Ingestion (CDC Use Case)
+# Snowpipe Streaming and Dynamic Tables for Real-Time Ingestion (CDC Use Case) 
 ## 1. Overview
 **This repository will take you through a scenario of using Snowflake's Snowpipe Streaming to ingest a simulated stream, then utilize Dynamic tables to transform and prepare the raw ingested JSON payloads into ready-for-analytics datasets. These are two of Snowflake's powerful Data Engineering innovations for ingestion and transformation.**
 

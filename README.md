@@ -4,7 +4,8 @@
 
 **A simulated streaming datafeed will be generated for this exercise, using a java client running on your desktop, that implements the Snowpipe Streaming SDK. The simulated datafeed will be Stock Limit Orders, with new, changed, and cancelled orders represented as RDBMS transactions logs captured from INSERT, UPDATE, and DELETE database events. These events will be transmitted as JSON payloads and land into a Snowflake table with a variant data column. The simulation will be high-volume, first starting at 1 million transactions in seconds and secondly as steady stream. Finally, data will contain sensitive fields, so our process will have extra protections for this.**
 
-![Overview Snowpipe Streaming Ingests data in real-time, storing it in a variant column for flexibility  Dynamic Tables Automatically transforms variant data into query-optimized tables  Use Case Si (1)](https://github.com/King4424/Dynamic-Tables-Ingestion/assets/121480992/1d814ecc-f52e-45c3-a91a-90a90a803ead)
+![Here's a summary of the key points from the provided document, incorporating insights from the image Overview Snowpipe Streaming Ingests data in real-time, storing it in a variant column for flexi](https://github.com/King4424/Dynamic-Tables-Ingestion/assets/121480992/695ac075-b794-4ff0-a409-d8be5a44dc08)
+
 
 
 
